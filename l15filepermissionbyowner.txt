@@ -1,0 +1,365 @@
+=> File Permission 
+
+compgen -u 
+sudo useradd user10 -m 
+sudo passwd user10 
+new password : Rzarni123 
+retry passsword : Rzarni123
+
+whoami          // rzarni 
+cd / 
+ls 
+cd home 
+ls -l 
+cd user10   // 
+exit 
+
+su - 
+passsword : Rzarni123 
+whoami // root 
+ls 
+cd home 
+ls -l 
+cd user10 
+pwd 
+exit
+
+whoami    // rzarni 
+cd / 
+ls 
+cd home 
+ls -l 
+cd user10           // bash: cd: user10: Permission denied
+pwd 
+clear 
+
+-----------------------------------------
+=> user10 ( remove permission group )
+
+    => remove permission 
+
+        su user10 
+        Rzarni123 
+        whoami  // 
+        cd / 
+        ls 
+        cd home/ 
+        ls -l 
+
+    => remove group permission 
+    chmod g-x user10 
+    chmod g-w user10 
+    chmod g-r user10 
+
+    cd user10 
+    pwd 
+    cd / 
+    cd home 
+
+
+-----------------------------------------
+
+=> user10 ( remove permission other )
+
+    => remove permission 
+
+        su user10 
+        Rzarni123 
+        whoami  // 
+        cd / 
+        ls 
+        cd home/ 
+        ls -l 
+
+    => remove other permission 
+    chmod o-x user10 
+    chmod o-w user10 
+    chmod o-r user10 
+
+-----------------------------------------
+
+=> user10 ( remove permission user )
+
+    => remove permission 
+
+        su user10 
+        Rzarni123 
+        whoami  // 
+        cd / 
+        ls 
+        cd home/ 
+        ls -l 
+
+    => remove user permission 
+    chmod u-x user10  // sh: 17: cd: can't cd to user10
+    chmod u-w user10  // can access
+    chmod u-r user10  // can access
+
+-----------------------------------------
+
+=> user10 ( add permission ) 
+
+    => add permission 
+
+        su user10 
+        Rzarni123 
+        whoami  // 
+        cd / 
+        ls 
+        cd home/ 
+        ls -l 
+
+    => add user permission ( other )
+    chmod o+x user10  // can access
+    chmod o+w user10  // can access
+    chmod o+r user10  // can access
+
+    => add user permission ( group )
+    chmod g+wx user10  // can access
+    chmod g+r user10  // can access
+
+    => add user permission ( user )
+    chmod u+rwx user10  // can access
+
+-----------------------------------------
+
+=> user10 ( all permission )
+
+    => remove all permission 
+        Method 1 
+            chmod a-r user10 
+            chmod a-w user10 
+            chmod a-x user10 
+
+        Method 2
+            chmod a-rwx user10 
+
+    => add all permission 
+        Method 1 
+            chmod a+r user10 
+            chmod a+w user10 
+            chmod a+x user10 
+
+        Method 2
+            chmod a+rwx user10 
+
+-----------------------------------------
+
+=> Exe 
+
+    compgen -u 
+    compgen -g
+
+    su user10 
+    Rzarni123 
+    cd / 
+    cd home/ 
+    ls -l 
+    chmod g+rwx user10 
+    ls -l 
+    exit 
+
+    su user2 
+    Rzarni678 
+    cd / 
+    cd home/ 
+    ls -l 
+    cd user10       // user10: Permission denied
+    exit 
+
+    compgen -g 
+    groups user10               ( check owner )
+    getent group user10 
+    members user10 
+
+    sudo adduser user2 user10 
+
+    su user2 
+    Rzarni678 
+    cd / 
+    cd home/ 
+    ls -l 
+    cd user10 
+    ls 
+    mkdir folder3byuser2 
+    ls 
+    rm -rf folder2byadmin
+    ls 
+    exit 
+
+    su user2 
+    Rzarni678 
+    cd / 
+    cd home 
+    ls -l 
+    cd user10       // Permission deined 
+    exit 
+
+    ---------------------------------------------------------
+
+    sudo addgroup mygroup (with message) or sudo groupadd mygroup ( without message ) 
+    compgen -g 
+    groups mygroup // (see owner) no such user 
+
+    getent group mygroup 
+    members group 
+
+    sudo adduser user10 mygroup 
+    sudo adduser user2 mygroup 
+
+    su user10 
+    Rzarni123 
+    cd / 
+    cd home/ 
+    ls -l  
+    cd user10 
+    pwd 
+    exit 
+
+    su user2
+    Rzarni678
+    cd / 
+    cd home/ 
+    ls -l  
+    cd user10 
+    exit
+
+    --------------------------------------------------------- 
+
+    => Change Group Ownership ( chgrp = change group ownership ) ( -R = Recursively , to recursively change the group ownership)
+        Syntax : sudo chgrp -R groupname directory 
+            sudo chgrp -R user3 user3 
+
+        su user2 
+        Rzarni678 
+        cd / 
+        cd home/ 
+        ls -l 
+        cd user10 // Permission denied 
+        exit 
+
+        whoami 
+        cd / 
+        cd home/ 
+        ls -l 
+
+        sudo chgrp -R user2 user10
+
+        ls -l 
+
+        su user2 
+        Rzarni678 
+        cd / 
+        cd home/ 
+        ls -l 
+        cd user10 // Permission denied 
+        exit 
+
+        su user10 
+        Rzarni123 
+        cd / 
+        cd home/ 
+        ls -l  
+        cd user10 
+        pwd 
+        exit 
+
+    ---------------------------------------------------------
+
+        su user3 
+        Rzarni901
+        cd / 
+        cd home/ 
+        ls -l 
+        cd user10 
+        exit 
+
+        getent group mygroup 
+        members mygroup 
+
+        sudo adduser user3 mygroup 
+
+        whoami 
+        cd / 
+        cd home/ 
+        ls -l 
+
+        sudo chgrp -R mygroup user10
+
+        su user3 
+        Rzarni901
+        cd / 
+        cd home/ 
+        ls -l 
+        cd user10 
+        exit 
+
+        --
+        whoami 
+        cd / 
+        cd home/ 
+        ls -l 
+
+        sudo chgrp -R user10 user10
+
+        su user2 
+        Rzarni678 
+        cd / 
+        cd home/ 
+        ls -l 
+        cd user10 // Permission denied 
+        exit 
+
+    ---------------------------------------------------------
+
+    => Change Folder Ownership 
+        Syntax : sudo chown -R newowner:groupname directory ( chown = change file owner and group )
+
+        whoami 
+        cd / 
+        cd home/ 
+        ls -l 
+
+        sudo chown -R user2:user10 user10 
+
+        su user2 
+        Rzarni678 
+        cd / 
+        cd home/ 
+        ls -l 
+        cd user10 // Permission denied 
+        exit 
+
+    ---------------------------------------------------------
+
+    => Permission Using Numberic Mode 
+
+        chmod ugo+r directory 
+        or 
+        chmod 444 directory 
+
+        su user2 
+        Rzarni678 
+        cd / 
+        cd home/ 
+        ls -l 
+
+        chmod 777 user2 
+        ls 
+        chmod 444 user2 
+        ls -l 
+        chmod 755 user2 
+        ls -l 
+        rwxr-xr-x
+
+
+
+
+        
+
+        
+
+
+
+
+

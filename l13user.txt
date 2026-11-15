@@ -1,0 +1,287 @@
+=> For Shutdown 
+    sudo poweroff 
+
+=> For restart ( reboot ) 
+    sudo reboot 
+
+=> Check Currently User 
+    who 
+    whoami // rzarni
+
+=> Check Host Name 
+    hostname  // rzarni 
+    cat /etc/hostname // rzarni
+
+=> Change Host Name 
+    hostnamectl set-hostname            //        
+    hostname                            //
+    sudo reboot                         // reboot
+
+=> Server Uptime 
+    uptime 
+
+    top 
+    ctrl+c (exit) 
+
+    w 
+
+    sudo apt-get install glances 
+    glances 
+
+=> Check 32bit processor or 64 bit processor 
+    unname  -a              // Linux acer 7.0.0-30-generic #30-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 18:22:54 UTC 2026 x86_64 GNU/Linux
+    uname -i                // Not working 
+    uname -w                // x86_64
+    getconf  LONG_BIT       // 64
+
+=> Check Ubuntu Version 
+    hostnamectl                 // detail info...
+    cat /etc/os-release         // detail info...
+    cat /etc/issue              // Ubuntu 26.04.1 LTS  
+
+=> Upgrade New OS version 
+    hostnamectl 
+    do-release-upgrade -c     ( Check for a new Ubuntu release version before upgrade )
+    sudo do-release-upgrade  ( upgrade )
+
+=> Login as Root User 
+    apt-get update      // Permission denied 
+
+    sudo -s or sudo -su 
+    Enter rzarni user password 
+    apt-get update 
+    exit 
+
+=> Setpassword or Changing root's password 
+    sudo passwd root 
+    new password : Rzarni123
+    return new password : Rzarni123
+
+=> Login as Root User 
+
+    Method 1 
+        sudo -s                     // root@acer:/home/rzarni# 
+        whoami 
+        exit 
+
+    Method 2
+        sudo -su                     // root@acer:/home/rzarni# 
+        whoami 
+        exit 
+
+    Method 3                        ( su = switch user )
+        su - 
+        password : Rzarni123        // root@acer:~# 
+        whoami 
+        exit 
+        su rzarni 
+    
+    Method 4 
+        su 
+        password                    // root@acer:/home/rzarni# 
+        whoami 
+        exit 
+
+=> Changing Password Of Current User   
+    su 
+    password : Rzarni123
+    whoami
+
+    passwd 
+    Current password : 
+    New password : Rzarni123
+
+=> Create New User Account 
+
+= Method 1 
+    sudo useradd user1              ( just created account , without user1 folder )
+    sudo useradd user3 -m  
+
+= Method 2 
+    sudo useradd user2 -m           ( cd / , cd home , ls = your will see system created user2 folder in under home folder )
+
+=> Display all users 
+    compgen -u                          ( only username ) 
+    getent passwd                       ( all info )
+    or 
+    cat /etc/passwd 
+
+=> Display single users 
+    getent passwd user1                 ( single user all info ) 
+    id                                  ( current login group detail info )
+    id user1                            ( single user group info )
+
+=> Set new user password in terminal 
+
+    => user1
+        sudo passwd user1 
+        new password : Rzarni456
+        return new password : Rzarni456
+
+    => user2 
+        sudo passwd user2
+        new password : Rzarni678
+        return new password : Rzarni678
+
+    => user3 
+        sudo passwd user3 
+        new password : Rzarni901 
+        return new password : Rzarni901
+
+=> Switch user in terminal 
+    su user1 
+    password Rzarni456 
+    su user2 
+    password Rzarni678 
+    whoami 
+    exit
+
+
+= Exe 1 
+    ls -l 
+    su user1 
+    password : Rzarni456 
+    whoami 
+    cd / 
+    ls 
+    cd home 
+    ls -l 
+    cd rzarni                           // error can't access
+    mkdir userfolder1                   // error can't access
+    ls 
+    exit 
+
+= Exe 2
+    ls -l 
+    su user2
+    password : Rzarni678 
+    whoami 
+    cd / 
+    ls 
+    cd home 
+    ls -l 
+    cd rzarni 
+    cd user3
+    cd user2 
+    mkdir userfolder2
+    echo "Hello" > file0.txt  
+    ls 
+    exit 
+
+= Exe 3
+    ls -l 
+    su user3
+    password : Rzarni901 
+    whoami 
+    cd / 
+    ls 
+    cd home 
+    ls -l 
+    cd rzarni                       // error can't access
+    cd user2                        // error can't access
+    cd user3 
+    mkdir userfolder3
+    echo "Hello" > file0.txt  
+    ls 
+    exit 
+
+=> Delete User 
+
+= Method 1 
+    sudo deluser user2               ( delete user without deleting user files and directories )
+
+= Method 2 
+    sudo deluser --remove-home user3  ( delete user deleting user files and directories under home folder )
+
+    id user2 
+    compgen -u 
+    cd / 
+    ls 
+    cd home 
+
+    sudo useradd user1          (without message / without password / without info )
+    compgen -u 
+
+    sudo adduser user2          ( with message / with password / with info )
+    compgen -u
+
+    sudo useradd user3 -m 
+    compgen -u 
+    = sudo passwd Rzarni901 
+    new password = Rzarni901 
+    retype password = Rzarni901 
+    = su user3 
+    password = Rzarni901 
+    whoami 
+    exit 
+    whoami 
+
+=> Lock or Unlock user password 
+
+    sudo passwd -l user3            ( Lock ) 
+    sudo passwd -u user3            ( Unlock ) 
+
+    = Exe 1 
+        su user3 
+        sudo passwd -l user3
+        password = Rzarni901            ( su: Authentication failure ) 
+        whoami 
+
+    = Exe 2
+        su user3 
+        sudo passwd -u user3 
+        password = Rzarni901            ( su: Authentication failure ) 
+        whoami 
+
+=> Rename User 
+    
+    compgen -u 
+    sudo useradd user4 -m 
+    sudo passwd user4
+    new password Rzarni123 
+    retry new password Rzarni123 
+
+    whoami 
+    cd / 
+    ls 
+    cd home 
+    ls -l 
+    cd 
+
+    su user4 
+    password = Rzarni123 
+    whoami
+    exit 
+    whoami 
+
+    = Method 1 ( user name changed but home/user4 directory will not change )
+        sudo usermod -l user40 user4
+
+    = Method 2 ( user name changed but home/user5 directory will change )
+        sudo usermod -l user50 -d /home/user50 -m user5 
+
+    cd / 
+    ls 
+    cd home 
+    ls -l 
+    cd 
+
+    su user40 
+    password = Rzarni123 
+    whoami 
+    exit 
+    whoami 
+
+    su user50
+    password = Rzarni123 
+    whoami 
+    exit 
+    whoami 
+
+---------------------------------------------------------
+
+
+    
+
+
+

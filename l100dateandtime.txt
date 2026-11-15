@@ -1,0 +1,29 @@
+=> Check Date
+
+date                = Wed Sep 16 07:40:19 PM +0630 2026
+date -u             = Wed Sep 16 01:10:23 PM UTC 2026
+
+date +"%T"          = 19:40:54
+
+date +"%d"          = 16
+date +"%D"          = 09/16/26
+date +"%F"          = 2026-09-16
+date +"%m"          = 09
+date +"%y"          = 26
+date +"%Y"          = 2026
+date +"%d-%m-%y"    = 16-09-26
+
+timedatectl = Local time: Wed 2026-09-16 19:51:00 +0630
+              Universal time: Wed 2026-09-16 13:21:00 UTC
+              time: Wed 2026-09-16 13:21:00
+              Time zone: Asia/Yangon (+0630, +0630)
+              System clock synchronized: yes
+              NTP service: active
+              RTC in local TZ: no
+
+=> Using cal 
+    sudo apt-get install ncal 
+    cal 
+    cal 2026 
+    cal 8 2006
+

@@ -1,0 +1,87 @@
+=> Folder Navigation 
+
+.               = This Directory
+..              = This parent directory 
+cd              = Go to next directory
+cd -            = Change to the previous directory 
+/               = Directory separator (forward slash)
+
+=> Check current directory 
+pwd                    /home/rzarni
+
+ls                    // Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos  snap
+ls ..                 // rzarni
+ls ../..              // bin cdrom etc lib lost+found mnt proc run  snap swap.img tmp var boot dev home lib64 media opt root sbin srv sys usr
+
+---------------------------------------------------------------
+
+ctrl+alt+t 
+ls 
+cd Music/ 
+ls 
+cd folderone/ 
+ls 
+cd 1/ 
+ls 
+cd .. 
+ls 
+cd .. 
+ls 
+pwd                  /home/rzarni/Music 
+cd 'folder two' 
+ls 
+cd .. 
+pwd                  /home/rzarni/Music 
+cd folder\ two
+
+---------------------------------------------------------------
+
+ctrl+alt+t
+ls 
+cd Music/ 
+ls 
+cd folderone/ 
+ls 
+cd 1/ 
+ls
+cd -                /home/rzarni/Music/folderone
+cd -                /home/rzarni/Music/folderone/1
+cd -                /home/rzarni/Music/folderone
+cd -                /home/rzarni/Music/folderone/1
+
+---------------------------------------------------------------
+
+=> ~  /home/rzarni/ ( Note : still in to home folder )
+
+ctrl+alt+t
+ls 
+cd Music/ 
+ls 
+cd folderone/ 
+ls 
+cd 1/ 
+ls
+cd --                /home/rzarni/
+
+---------------------------------------------------------------
+
+=> /  /root ( Note : under root folder )
+
+ctrl+alt+t
+ls 
+cd Music/ 
+ls 
+cd folderone/ 
+ls 
+cd 1/ 
+ls
+cd /                /home/rzarni/
+
+---------------------------------------------------------------
+
+
+
+
+
+
+

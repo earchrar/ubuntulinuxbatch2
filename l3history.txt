@@ -1,0 +1,61 @@
+=> History Commands 
+
+    => Clear Terminal 
+        clear 
+        ctrl+m+l ( clear )
+
+        ctrl+m ( New Line )
+        ctrl+l ( clear )
+
+    => Close Terminal 
+        exit 
+        ctrl+d
+
+    => Cursor to start char in Terminal 
+        ctrl+a 
+
+    => Cursor to end char in Terminal 
+        ctrl+e
+
+    => Find used Commands again 
+        ctrl+r 
+        enter (if you want to use) 
+        ctrl+g (if you want to cancel)
+
+    => Command Callback 
+        Press up arrow key      ( callback )
+        Press up down key       ( callback )
+        !!                      ( callback last command and run again )
+        histroy 5               ( see all commands histroy )
+        !522                    ( callback history from commands history and run again )
+        !522:p                  ( get command from commands history just print )
+        history -c              ( clear all history )
+
+    => wget 
+        wget https://i.pinimg.com/564x/3a/3d/4b/3a3d4b04d70cc293fadf195b4e1a7bcb.jpg
+        ls 
+
+    => Check all history in .bash_history file
+        ctrl+alt+t 
+        ls
+        ls -l 
+        ls -a 
+        ls -l -a 
+        ls -la or ls al 
+        ls -lah or alh 
+        cat .bash_history 
+        vim .bash_history 
+        ctrl+c 
+        :qa 
+
+    => Ignore Space & Ignore Multi Times
+        ls -l -a 
+        history 
+         ls -la 
+        history 
+        cd 
+        cd
+        cd 
+        cd 
+        cd 
+        history ( if type many times ! history recorded one times )

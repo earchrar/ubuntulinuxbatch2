@@ -1,0 +1,140 @@
+=> Install Package & Remove Package 
+
+    => Package Management System 
+        (i). apt  ( Advanced Package Tool ) // Debian based system
+        (ii). snap  // developed by Canonical , the company behind Ubuntu 
+                    // cross-distributions support 
+                    // always up-to-data 
+                    // huge size/dis space
+                    // resources 
+
+    => Method 1 
+        Using the Ubuntu Software Center 
+
+    => Method 2 
+        => Finding Software Package 
+
+            ctrl + alt + t 
+                dpkg --list   (or) dpkg -l  (or)  dpkg-query -l 
+        
+        => Listing all Installed Software Package on Linux 
+            sudo apt list --Installed 
+
+        => Install Application 
+            sudo apt install packagename  or sudo apt install -y packagename ( Automatic Yes to Prompts ) 
+            sudo apt install -s packagename  ( -s flag = Simulate Installation , which mean without actually installing the package )
+
+            sudo apt update ( must run before install new app ) 
+
+        => git 
+            sudo apt install git  => git -v (git version 2.53.0)
+
+        => curl
+            sudo apt install curl  => curl --version ( 8.18.0 ) ( command-line tool for transferring data with url )
+        
+        => wget 
+            sudo apt install wget  => wget --version ( 1.25.0 ) ( download file from web )
+
+        => vim 
+            sudo apt install vim  => vim --version ( 9.1 ) ( download file from web )
+
+        => vlc 
+            sudo apt install vlc  => vlc --version ( 3.0.23 ) ( download file from web )
+        
+        => aptitude  
+            sudo apt install aptitude  => aptitude --version ( 0.8.13 ) (or) aptitude -v (or) aptitude search '~i' 
+
+        => net-tools  
+            sudo apt install net-tools  => ifconfig route 
+
+        => nodejs  
+            sudo apt install nodejs  => node -v ( ) 
+
+        => npm  
+            sudo apt install npm  => npm -v ( ) 
+
+        => nvm  
+            sudo apt install npm  => nvm -v ( ) 
+
+        => php 
+            sudo apt install php => php -v ( 8.5.4 )
+
+        => View Details information about specific package 
+            apt show packagename            eg : apt show vlc 
+
+        => Nodejs Latest Version 
+            Go = https://nodejs.org/en/download 
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash
+
+            Go = https://github.com/nvm-sh/nvm
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+
+            export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm, without auto-using the default version
+            nvm -v 
+            node -v 
+            npm -v
+
+        => Firewall ( UFW = Uncomplicated Firewall ) 
+
+            ufw app list 
+            ufw status 
+            ufw status numbered 
+            ufw reload 
+            sudo ufw enable     ( Note :: beware before you enable firewall , that can be lock yourself )
+            ufw status 
+            sudo ufw disable
+
+            sudo ufw enable 
+            sudo ufw deny from 103.81.113.17            ( Block an IP Address ) 
+            sudo ufw allow from 103.81.113.17            ( Allow an IP Address )
+
+            sudo ufw deny from 103.81.113.17            ( Block a Subnet ) 
+
+            sudo ufw deny in on wlp2s0 from 192.168.100.0   ( Block Incoming connection to a Network Interface )
+            sudo ufw allow in on wlp2s0 from 192.168.100.0   ( Block Incoming connection to a Network Interface )
+
+            ufw status 
+            ufw status numbered 
+
+            sudo ufw delete allow from 103.81.113.17        ( Delete UFW rule ) 
+            sudo ufw delete 3 
+
+            sudo ufw allow ssh 
+            sudo ufw allow http 
+            sudo ufw allow https 
+
+        => Remove Package 
+            (i). Remove Package 
+                sudo apt remove vlc 
+
+            (ii). Remove a package and it's configuration files 
+                sudo apt purge vlc 
+
+            (iii). Clean Up Unused Dependencies 
+                sudo apt autoremove 
+
+                = option 
+                    sudo apt-get clean 
+                    sudo apt-get --fix-broken install 
+
+    => Method 3 
+        Facial DEB download file install ( .deb files on Ubuntu and Debian-based Linux Distributions ) 
+
+        = .deb 
+
+            cd ~/Dowloads/ 
+            sudo dpkg -i installer_file 
+
+            cd ~/Dowloads/ 
+            sudo apt-get install -f                 // Fix Dependencies 
+
+        = .run 
+
+            (i). cd ~/Download/ 
+                sudo chomd +x installer_file.run            // Make the file executable 
+
+            (ii). cd ~/Dowloads/ 
+                sudo installer_file.run             or      su installer_file.run   or sh installer_file.run
+
+         
